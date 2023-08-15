@@ -10,7 +10,6 @@ interface BlockShape {
   timestamp: number;
 }
 
-// 난이도에 따른 0 시퀀스 생성
 function generateZeroSequence(difficulty: number): string {
   return Array(difficulty + 1).join('0');
 }
@@ -42,7 +41,7 @@ export class Block implements BlockShape {
     this.mineBlock(); 
   }
 
-  // 블록의 해시 계산
+  // sha-256
   calculateHash(): string {
     const hash = crypto
       .createHash('sha256')
@@ -51,7 +50,7 @@ export class Block implements BlockShape {
     return hash;
   }
 
-  // 난이도에 따라 블록 채굴
+  // nonce 
   mineBlock(): void {
     const zeroSequence = generateZeroSequence(this.difficulty);
     while (this.hash.substring(0, this.difficulty) !== zeroSequence) {
@@ -68,7 +67,7 @@ export class Blockchain {
     this.chain = [this.createGenesisBlock()];
   }
 
-  // 제네시스 블록 생성
+  // 첫 블록 생성
   createGenesisBlock(): Block {
     const genesisHeight = 0;
     const genesisPrevHash = '';
@@ -81,7 +80,7 @@ export class Blockchain {
     return genesisBlock;
   }
 
-  // 블록을 블록체인에 추가
+  // 블록 추가 
   addBlock(data: string, miner: string): Block {
     const newHeight = this.chain.length;
     const prevHash = this.getLatestBlock().hash;
@@ -91,12 +90,12 @@ export class Blockchain {
     return newBlock;
   }
 
-  // 가장 최근 블록 얻기
+  // 최근 블록 get
   getLatestBlock(): Block {
     return this.chain[this.chain.length - 1];
   }
 
-  // 블록체인의 유효성 검사
+  // Valid
   isValid(): boolean {
     for (let i = 1; i < this.chain.length; i++) {
       const currentBlock = this.chain[i];
