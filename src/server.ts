@@ -74,12 +74,10 @@ io.on("connection", (socket) => {
       console.log(`${newData} 추가되었습니다.`);
       notifyMining(ip, newBlock);
 
-      minedIPs.add(ip); // Mark the IP as having successfully mined a block
+      minedIPs.add(ip); 
     }
   });
 
- 
-  // 다른 노드가 블록 채굴에 성공했을 때 이벤트를 전파하고 노드들을 멈추게 함
   socket.on("mining-in-progress", () => {
     socket.broadcast.emit("mining-in-progress");
   });
