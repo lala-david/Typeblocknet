@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎 Happy Blockchain Lab </title>
+    <link rel="stylesheet" href="./style/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">💎 마이닝</h1>
+        <h3 class="subtitle">현재 연결된 노드 수: <span id="connections">0</span></h3>
+        <h3 id="mining-message"></h3>
+        <h3 class="subtitle">채굴된 블록 정보</h3>
+        <div class="table-container">
+            <table id="mining-table">
+                <thead>
+                    <tr>
+                        <th>사용자 (IP)</th>
+                        <th class="horizontal-text">블록 번호</th>
+                        <th>이전 해시</th>
+                        <th>해시</th>
+                        <th>데이터</th>
+                        <th>Nonce</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="mining-list"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./server/client.js"></script>
+</body>
+</html>

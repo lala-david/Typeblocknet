@@ -1,0 +1,17 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "*": ["src/*"]
+      },
+      "outDir": "build",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "target": "ES6",
+      "lib": ["ES6"],
+      "strict": true,
+      "module": "CommonJS",
+      "moduleResolution": "node"
+    }
+  }
