@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CID</title>
+</head>
+<body>
+  <h1>IPFS 파일 업로드</h1>
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()">파일 업로드</button>
+  <div id="cidOutput">CID:</div>
+  <a href="./block.html"><button class="explore">블록 탐색</button></a> 
+  <script>
+    const socket = io();
+    async function uploadFile() {
+      const fileInput = document.getElementById("fileInput");
+      const file = fileInput.files[0];
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch("/upload", { method: "POST", body: formData });
+      const result = await response.json();
+      
+      document.getElementById("cidOutput").innerText = `CID: ${result.cid}`;
+
+      socket.emit('cid-upload-done'); // CID 업로드가 완료되었음을 서버에 알림
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js"></script>
+</body>
+</html>

@@ -5,8 +5,8 @@ import path from "path";
 import { Block, Blockchain } from "./blockchain";
 
 const SERVER_ADDRESS = "203.234.55.134";
-const P2P_PORT = 80;
-
+const P2P_PORT = 3012;
+ 
 const app = express();
 const server = http.createServer(app);
 const io = new SocketIoServer(server);
@@ -18,8 +18,22 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./", "index.html"));
 });
 
+app.get("/search.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "./", "search.html"));
+});
+
 app.get("/blocks", (req, res) => {
   res.json(blockchain.chain);
+});
+
+app.get("/blocks/:index", (req, res) => {
+  const index = parseInt(req.params.index);
+
+  if (!isNaN(index) && index >= 0 && index < blockchain.chain.length) {
+    res.json(blockchain.chain[index]);
+  } else {
+    res.status(404).send("블록을 찾을 수 없습니다.");
+  }
 });
 
 function notifyMining(ip: string, block: Block) {
@@ -65,6 +79,10 @@ io.on("connection", (socket) => {
 
   socket.on("ready", () => {
     socket.emit("start-mining", ip);
+  });
+
+  socket.on("get-blockchain", () => {
+    socket.emit("blockchain", blockchain.chain);
   });
 
   socket.on("start-mining", (id) => {

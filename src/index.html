@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 Happy Blockchain Intelligence Lab </title>
+    <title>💎 Happy Blockchain Intelligence Lab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -12,28 +12,44 @@
 </head>
 
 <body>
-  <div class="container">
-      <h1 class="title">🧊 Ice Block minning</h1>
-      <h3 class="subtitle">🐧 현재 연결된 노드: <span id="connections">0</span></h3>
-      <h3 class="subtitle">채굴된 블록 정보</h3>
-      <div class="table-container">
-          <table id="mining-table">
-              <thead>
-                  <tr>
-                      <th>사용자 (IP)</th>
-                      <th>블록 번호</th>
-                      <th>이전 해시</th>
-                      <th>해시</th>
-                      <th>데이터</th>
-                      <th>Nonce</th>
-                      <th>Timestamp</th>
-                  </tr>
-              </thead>
-              <tbody id="mining-list"></tbody>
-          </table>
-      </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.2.0/dist/socket.io.min.js"></script>
-  <script src="./client.js"></script>
+    <div class="container">
+        <h1 class="title">🧊 Ice Block Mining</h1>
+        <h3 class="subtitle">🐧 현재 연결된 노드: <span id="connections">0</span></h3>
+        <h3 class="subtitle">채굴된 블록 정보</h3>
+    
+        <div class="table-container">
+            <a href="./search.html" id="search-link">🧊 Ice 블록 검색</a>
+            <table id="mining-table">
+                <thead>
+                    <tr>
+                        <th>사용자 (IP)</th>
+                        <th>블록 번호</th>
+                        <th>이전 해시</th>
+                        <th>해시</th>
+                        <th>데이터</th>
+                        <th>Nonce</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="mining-list"></tbody>
+            </table>
+        </div>
+        <p id="mining-message"></p>
+        <h3 id="nodes-graph-title">🧊 Node Connect Graph</h3>
+        <div id="nodes-graph" class="nodes-container"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.2.0/dist/socket.io.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        };
+
+        const cid = getQueryParam('cid');
+    </script>
+    <script src="./client.js"></script>
 </body>
+</body>
+
 </html>
