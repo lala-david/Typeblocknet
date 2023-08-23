@@ -1,12 +1,12 @@
-# 🐟 초기 버전 
+## 🐟 초기 버전 
 ![image](https://github.com/lala-david/Typeblocknet/assets/37481441/48cf1ae4-aa3e-4fef-87dd-aa5dca4e4de5)
 <br>
 </br>
-# 🧊 검색기능  
+## 🧊 검색기능  
 ![image](https://github.com/lala-david/Typeblocknet/assets/37481441/e2a873e3-3da3-456a-83de-9e9dc668c6a8)
 <br>
 </br>
-# 🧊 그래프 기능 
+## 🧊 그래프 기능 
 ![image](https://github.com/lala-david/Typeblocknet/assets/37481441/07e4e5c8-13f7-4867-8299-a0f09f3b378a)
 <br>
 </br>
